@@ -1,6 +1,5 @@
 package its.fuckin.CRUD.models;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 public class Person {
