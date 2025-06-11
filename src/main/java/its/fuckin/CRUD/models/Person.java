@@ -1,9 +1,18 @@
 package its.fuckin.CRUD.models;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+
 public class Person {
     private int id;
+    @NotEmpty(message = "Name cannot be empty")
+    @Size(min = 2, max = 30, message = "Name should contain more than 1 character and less than 30")
     private String name;
+    @Min(value = 0, message = "Age cannot be negative")
+    @Max(value = 150, message = "You can`t be so old")
     private int age;
+    @NotEmpty(message = "Email cannot be empty")
+    @Email(message = "Invalid email")
     private String email;
 
     public Person(int id, String name, int age, String email) {
