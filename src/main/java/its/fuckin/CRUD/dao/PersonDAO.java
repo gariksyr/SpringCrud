@@ -29,7 +29,7 @@ public class PersonDAO {
                 .stream().findAny().orElse(null);
     }
     public void save(Person person){
-        jdbcTemplate.update("INSERT INTO person VALUES(1, ?, ?, ?)", person.getName(),person.getAge(), person.getEmail());
+        jdbcTemplate.update("INSERT INTO person(name, age, email) VALUES(?, ?, ?)", person.getName(),person.getAge(), person.getEmail());
     }
     public void update(int id, Person person){
         jdbcTemplate.update("UPDATE person SET name=?, age=?, email=? WHERE id=?", person.getName(),person.getAge(), person.getEmail(), person.getId());
