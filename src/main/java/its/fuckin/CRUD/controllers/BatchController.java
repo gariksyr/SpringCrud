@@ -1,6 +1,6 @@
 package its.fuckin.CRUD.controllers;
 
-import its.fuckin.CRUD.dao.PersonDAO;
+import its.fuckin.CRUD.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,26 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/test-batch-update")
 public class BatchController {
-    private final PersonDAO personDAO;
+    private final PeopleService peopleService;
 
     @Autowired
-    public BatchController(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    public BatchController(PeopleService peopleService) {
+        this.peopleService = peopleService;
     }
 
     @GetMapping()
     public String index(){
         return "batch/index";
     }
-    @GetMapping("/without")
-    public String withoutBatch(){
-        personDAO.testMultipleUpdate();
-        return "redirect:/people";
-    }
-    @GetMapping("/with")
-    public String withBatch(){
-        personDAO.testBatchUpdate();
-        return "redirect:/people";
-    }
+//    @GetMapping("/without")
+//    public String withoutBatch(){
+//        personDAO.testMultipleUpdate();
+//        return "redirect:/people";
+//    }
+//    @GetMapping("/with")
+//    public String withBatch(){
+//        personDAO.testBatchUpdate();
+//        return "redirect:/people";
+//    }
 
 }

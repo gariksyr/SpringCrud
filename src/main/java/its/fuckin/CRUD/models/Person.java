@@ -1,24 +1,31 @@
 package its.fuckin.CRUD.models;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-
+@Entity
+@Table(name = "Person")
 public class Person {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "name")
     @NotEmpty(message = "Name cannot be empty")
     @Size(min = 2, max = 30, message = "Name should contain more than 1 character and less than 30")
     private String name;
+    @Column(name = "age")
     @Min(value = 0, message = "Age cannot be negative")
     @Max(value = 150, message = "You can`t be so old")
     private int age;
+    @Column(name = "email")
     @NotEmpty(message = "Email cannot be empty")
     @Email(message = "Invalid email")
     private String email;
-
+    @Column(name = "address")
     @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message = "Your address should be in this format: Country, City, Postal Code (6 digits)")
     private String address;
 
-    public Person(int id, String name, int age, String email, String address) {
-        this.id = id;
+    public Person(String name, int age, String email, String address) {
         this.name = name;
         this.age = age;
         this.email = email;
@@ -43,8 +50,7 @@ public class Person {
 
     public Person(){}
 
-    public Person(int id, String name) {
-        this.id = id;
+    public Person(String name) {
         this.name = name;
     }
 

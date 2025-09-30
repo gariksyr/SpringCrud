@@ -1,7 +1,7 @@
 package its.fuckin.CRUD.util;
 
-import its.fuckin.CRUD.dao.PersonDAO;
 import its.fuckin.CRUD.models.Person;
+import its.fuckin.CRUD.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -9,11 +9,11 @@ import org.springframework.validation.Validator;
 
 @Component
 public class PersonValidator implements Validator {
-    private final PersonDAO personDAO;
+    private final PeopleService peopleService;
 
     @Autowired
-    public PersonValidator(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    public PersonValidator(PeopleService peopleService) {
+        this.peopleService = peopleService;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-        if (personDAO.show(person.getEmail()).isPresent()){
+        if (peopleService.findOne(person.getEmail()).isPresent()){
             errors.rejectValue("email", "", "This email is already taken");
         }
     }
