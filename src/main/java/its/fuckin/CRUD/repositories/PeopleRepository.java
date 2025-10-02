@@ -10,6 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface PeopleRepository extends JpaRepository<Person, Integer> {
-    @Query("SELECT p FROM Person p WHERE p.email = :email")
-    Optional<Person> findOne(@Param("email") String email);
+    Optional<Person> findPersonByEmail(String email);
 }

@@ -24,7 +24,7 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-        if (peopleService.findOne(person.getEmail()).isPresent()){
+        if (peopleService.findPersonByEmail(person.getEmail()).isPresent()){
             errors.rejectValue("email", "", "This email is already taken");
         }
     }

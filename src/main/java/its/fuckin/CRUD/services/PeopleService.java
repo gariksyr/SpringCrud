@@ -24,8 +24,8 @@ public class PeopleService {
     public Person findOne(int id){
         return peopleRepository.findById(id).orElse(null);
     }
-    public Optional<Person> findOne(String email){
-        return peopleRepository.findOne(email);
+    public Optional<Person> findPersonByEmail(String email){
+        return peopleRepository.findPersonByEmail(email);
     }
     @Transactional
     public void save(Person person){
