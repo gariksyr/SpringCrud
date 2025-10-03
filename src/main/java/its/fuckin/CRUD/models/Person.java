@@ -36,12 +36,22 @@ public class Person {
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Enumerated(EnumType.STRING)
+    private Mood mood;
 
     public Person(String name, int age, String email, String address) {
         this.name = name;
         this.age = age;
         this.email = email;
         this.address = address;
+    }
+
+    public Mood getMood() {
+        return mood;
+    }
+
+    public void setMood(Mood mood) {
+        this.mood = mood;
     }
 
     public Date getDateOfBirth() {

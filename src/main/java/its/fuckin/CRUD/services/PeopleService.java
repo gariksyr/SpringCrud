@@ -1,5 +1,6 @@
 package its.fuckin.CRUD.services;
 
+import its.fuckin.CRUD.models.Mood;
 import its.fuckin.CRUD.models.Person;
 import its.fuckin.CRUD.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class PeopleService {
     @Transactional
     public void save(Person person){
         person.setCreatedAt(new Date());
+        person.setMood(Mood.CALM);
         peopleRepository.save(person);
     }
     @Transactional
